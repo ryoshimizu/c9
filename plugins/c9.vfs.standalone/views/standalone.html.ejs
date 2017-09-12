@@ -20,20 +20,21 @@
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
 </head>
 <body>
+staticPrefix = <%=staticPrefix %>
     <% include ../../c9.ide.server/views/load-screen.ejs %>
 
     <% if (packed) { %>
-        <script src="/static/<%=version%>/config/<%=configName%>.js"></script>
+        <script src="<%=staticPrefix%>/static/<%=version%>/config/<%=configName%>.js"></script>
     <% } else { %>
-        <script src="/static/mini_require.js"></script>
-        <script src="/configs/require_config.js"></script>
+        <script src="<%=staticPrefix%>/static/mini_require.js"></script>
+        <script src="<%=staticPrefix%>/configs/require_config.js"></script>
     <% } %>
     <script>
         var plugins = <%-: architectConfig | JSONToJS %>;
         var start = Date.now();
         
         <% if (packed) { %>
-            require.MODULE_LOAD_URL = "/static/standalone/modules"
+            require.MODULE_LOAD_URL = "<%=staticPrefix%>/static/standalone/modules"
         <% } %>
         
         if (isLocalVersion)

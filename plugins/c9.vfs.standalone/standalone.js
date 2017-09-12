@@ -106,9 +106,9 @@ function plugin(options, imports, register) {
             opts.packed = opts.options.packed = true;
         
         var cdn = options.options.cdn;
-        options.options.themePrefix = "/static/" + cdn.version + "/skin/" + configName;
-        options.options.workerPrefix = "/static/" + cdn.version + "/worker";
-        options.options.CORSWorkerPrefix = opts.packed ? "/static/" + cdn.version + "/worker" : "";
+        options.options.themePrefix = opts.options.staticPrefix + "/static/" + cdn.version + "/skin/" + configName;
+        options.options.workerPrefix = opts.options.staticPrefix + "/static/" + cdn.version + "/worker";
+        options.options.CORSWorkerPrefix = opts.packed ? opts.options.staticPrefix + "/static/" + cdn.version + "/worker" : "";
         
         api.updatConfig(opts.options, {
             w: req.params.w,
@@ -119,11 +119,13 @@ function plugin(options, imports, register) {
         res.setHeader("Cache-Control", "no-cache, no-store");
         if (req.params.config == 1)
             return res.json(getConfig(configName, opts));
+
         res.render(__dirname + "/views/standalone.html.ejs", {
             architectConfig: getConfig(configName, opts),
             configName: configName,
             packed: opts.packed,
             standalone: true,
+            staticPrefix: opts.options.staticPrefix,
             version: opts.version
         }, next);
     });
@@ -344,6 +346,6 @@ function getConfig(configName, options) {
         settings[type] = data;
     }
     options.options.settings = settings;
-    
+
     return require(filename)(options.options);
 }

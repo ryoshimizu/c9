@@ -7,6 +7,9 @@ define(function(require, exports, module) {
     return main;
 
     function main(options, imports, register) {
+      
+        options.staticPrefix = options.staticPrefix.replace('/plugins', '/static/plugins');
+
         var c9 = imports.c9;
         var Plugin = imports.Plugin;
         var settings = imports.settings;
