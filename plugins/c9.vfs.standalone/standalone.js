@@ -207,6 +207,9 @@ function plugin(options, imports, register) {
         var config = res.getOptions().requirejsConfig || {};
         
         res.writeHead(200, { "Content-Type": "application/javascript" });
+        
+        config.staticPrefix = options.options.staticPrefix;
+
         res.end("requirejs.config(" + JSON.stringify(config) + ");");
     });
     

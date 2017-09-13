@@ -24,6 +24,9 @@ module.exports = function(manifest, installPath) {
     if (win32)
         readWin32Settings();
     
+    console.log('env is');
+    console.log(process.env);
+
     var home = process.env.HOME;
     assert(home, "home directory must be set");
     
@@ -61,8 +64,7 @@ module.exports = function(manifest, installPath) {
         nodeBin: [path.join(installPath, win32 ? "node.exe" : "node/bin/node"), process.execPath],
         installPath: installPath,
         correctedInstallPath: correctedInstallPath,
-        //staticPrefix: "/static",
-        staticPrefix: "/r/apps/c9",
+        staticPrefix: process.env.STATIC_PREFIX, //"/r/apps/c9",
         projectUrl: "/workspace",
         ideBaseUrl: "http://c9.io",
         previewUrl: "/preview",

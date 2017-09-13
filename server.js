@@ -6,12 +6,13 @@ try {
     require("heapdump");
 } catch(e) {}
 
-var path = require("path");
-var architect = require("architect");
-var os = require("os");
-var urls = require("c9/urls");
-var hostname = require("c9/hostname");
+var path          = require("path");
+var architect     = require("architect");
+var os            = require("os");
+var urls          = require("c9/urls");
+var hostname      = require("c9/hostname");
 var child_process = require("child_process");
+
 require("c9/setup_paths.js");
 
 if (process.version.match(/^v0/) && parseFloat(process.version.substr(3)) < 10) {
@@ -19,7 +20,7 @@ if (process.version.match(/^v0/) && parseFloat(process.version.substr(3)) < 10) 
         + ". Version 0.10 or higher is recommended. Some features will not work.");
 }
 
-var DEFAULT_CONFIG = "s";
+var DEFAULT_CONFIG   = "s";
 var DEFAULT_SETTINGS = getDefaultSettings();
 
 var shortcuts = {

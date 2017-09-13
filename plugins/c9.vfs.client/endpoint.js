@@ -66,7 +66,7 @@ define(function(require, exports, module) {
                 options.getServers = undefined;
                 var loc = require("url").parse(baseURI || document.baseURI || window.location.href);
                 var defaultServers = [{
-                    url: loc.protocol + "//" + loc.hostname + (loc.port ? ":" + loc.port : "") + "/r/apps/c9/vfs",
+                    url: loc.protocol + "//" + loc.hostname + (loc.port ? ":" + loc.port : "") + loc.path.replace('/ide.html', '') + "/vfs",
                     region: "default"
                 }];
                 servers = (urlServers || options.servers || defaultServers).map(function(server) {
@@ -127,7 +127,9 @@ define(function(require, exports, module) {
         }
 
         function isOnline(callback) {
-            http.request("/r/apps/c9/_ping", {
+            var loc = require("url").parse(document.baseURI || window.location.href);
+
+            http.request(loc.path.replace('/ide.html', '') + "/_ping", {
                 timeout: 3000,
                 headers: {
                     Accept: "application/json"
