@@ -87,6 +87,8 @@ define(function(require, exports, module) {
         };
         
         plugin.getFileIconCss = function(staticPrefix) {
+            staticPrefix = staticPrefix.replace('/plugins', '/static/plugins');
+
             function iconCss(name, icon) {
                 return ".filetree-icon." + name + "{background-image:"
                     + "url(\"" + staticPrefix + "/icons/" + (icon || name) + ".png\")}";

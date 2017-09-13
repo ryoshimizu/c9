@@ -523,7 +523,7 @@ define(function(require, exports, module) {
         hash.counter = 0;
         function hash(data, callback) {
             if (!worker) {
-                worker = createWorker((options.staticPrefix || "/static") + "/lib/rusha/rusha.min.js");
+                worker = createWorker((options.staticPrefix+"/static" || "/static") + "/lib/rusha/rusha.min.js");
                 worker.addEventListener("message", function(e) {
                     // @todo security?
                     

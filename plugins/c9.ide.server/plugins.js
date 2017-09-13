@@ -79,6 +79,7 @@ define(function(require, exports, module) {
                         path: __dirname + "/../../node_modules/" + name,
                         mount: "/lib/" + name
                     }]);
+
                 });
                 
                 statics.addStatics([{

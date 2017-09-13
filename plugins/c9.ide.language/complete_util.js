@@ -86,7 +86,7 @@ function fetchTextSync(path) {
 function fetchText(path, callback) {
     var xhr = new XMLHttpRequest();
     try {
-        xhr.open('GET', staticPrefix + "/" + path, true);
+        xhr.open('GET', staticPrefix + "/static/" + path, true);
     } catch (e) {
         // ms edge throws an error here
         return done(e);
